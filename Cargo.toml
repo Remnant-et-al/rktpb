@@ -16,11 +16,11 @@ mutable_key_type = "allow"
 
 [dependencies]
 rocket = "0.5"
-rocket_dyn_templates = { version = "0.1", features = ["tera"] }
+rocket_dyn_templates = { version = "0.2", features = ["tera"] }
 yansi = "1.0.0-rc"
 rand = "0.8"
 syntect = "5"
-comrak = "0.22"
+comrak = { version = "0.26", default-features = false }
 futures = "0.3"
 humantime = "2.1"
 humantime-serde = "1.1"
