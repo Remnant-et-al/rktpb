@@ -1,0 +1,6 @@
+target
+upload
+*.template
+.cargo
+**/*.sh
+**/*.tar.gz
