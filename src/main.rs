@@ -8,9 +8,8 @@ mod cors;
 mod config;
 mod reaper;
 
+use rocket::tokio::{fs, io};
 use rocket_dyn_templates::{Template, context};
-use rocket::tokio::fs::{self, File};
-use rocket::tokio::io::{self, AsyncReadExt};
 
 use rocket::State;
 use rocket::form::Form;
@@ -31,7 +30,7 @@ use reaper::Reaper;
 #[derive(Responder)]
 pub enum Paste {
     Highlighted(Template),
-    Regular(File, ContentType),
+    Regular(Vec<u8>, ContentType),
     Markdown(Template),
 }
 
@@ -82,25 +81,25 @@ async fn get(
     highlighter: &State<Highlighter>,
     config: &Config,
 ) -> io::Result<Option<Paste>> {
-    let Ok(mut file) = File::open(&id.file_path(config)).await else {
-        return Ok(None)
-    };
+    let path = id.file_path(config);
+    if !path.exists() {
+        return Ok(None);
+    }
 
+    let data = fs::read(path).await?;
     let paste = match id.ext() {
         Some("md" | "mdown" | "markdown") => {
-            let mut file_contents = String::new();
-            file.read_to_string(&mut file_contents).await?;
-            let content = highlighter.render_markdown(&file_contents)?;
+            let string = String::from_utf8_lossy(&data);
+            let content = highlighter.render_markdown(&string)?;
             Paste::Markdown(Template::render("markdown", context! { config, id, content }))
         }
         Some(ext) if Highlighter::contains(ext) => {
-            let mut file_contents = String::new();
-            file.read_to_string(&mut file_contents).await?;
-            let content = highlighter.highlight(&file_contents, ext)?;
+            let string = String::from_utf8_lossy(&data);
+            let content = highlighter.highlight(&string, ext)?;
             let lines = content.lines().count();
             Paste::Highlighted(Template::render("code", context! { config, id, content, lines }))
         }
-        _ => Paste::Regular(file, id.content_type().unwrap_or(ContentType::Plain)),
+        _ => Paste::Regular(data, id.content_type().unwrap_or(ContentType::Plain)),
     };
 
     Ok(Some(paste))
