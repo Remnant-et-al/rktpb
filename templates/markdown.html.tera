@@ -1,13 +1,7 @@
 {% extends 'base' %}
 {% block title %}Markdown | {{ id }} | Rocket Powered Pastebin{% endblock title %}
 {% block head %}
-<meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  font-src data:;
-  style-src-attr 'unsafe-inline';
-  script-src 'none';
-  img-src *;
-">
+{% include 'csp' %}
 <link rel="stylesheet" href="/markdown.min.css">
 <link href="{{ config.server_url }}/{{ id }}" rel="canonical" />
 {% endblock head %}

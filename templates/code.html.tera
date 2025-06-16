@@ -3,6 +3,7 @@
 {% block head %}
 <link rel="stylesheet" href="/normalize.min.css">
 <link rel="stylesheet" href="/code.min.css">
+{% include 'csp' %}
 {% endblock head %}
 {% block body %}
 <main>
