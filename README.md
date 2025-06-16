@@ -4,6 +4,7 @@ A pastebin that does just enough to be _really_ useful.
 
   - [x] Really fast, really lightweight.
   - [x] Renders _markdown_ like GitHub.
+  - [x] Renders [asciinema](https://asciinema.org) terminal screen recordings.
   - [x] Highlights `source code`.
   - [x] Returns plain text, too.
   - [x] Has a simple API usable via CLI.
@@ -19,7 +20,7 @@ be found there.
 
 ## Usage
 
-**R**ocket **P**owered Paste**b**in (`rktpb`) is written in
+**R**ocket **P**owered **P**aste**b**in (`rktpb`) is written in
 [Rust](https://rust-lang.org) with [Rocket](https://rocket.rs). To start the
 server, use `cargo`:
 
