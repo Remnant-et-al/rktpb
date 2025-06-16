@@ -9,7 +9,7 @@ pub const HIGHLIGHT_EXTS: &[&str] = &[
     "OCamlMakefile", "PL", "R", "Rakefile", "Rantfile", "Rprofile", "S", "SConscript",
     "SConstruct", "Scanfile", "Sconstruct", "Snakefile", "Snapfile", "Thorfile", "Vagrantfile",
     "adp", "applescript", "as", "asa", "asp", "bash", "bat", "bib", "bsh", "build", "builder", "c",
-    "c++", "capfile", "cc", "cgi", "cl", "clisp", "clj", "cls", "cmd", "config.ru", "cp", "cpp",
+    "c++", "capfile", "cast", "cc", "cgi", "cl", "clisp", "clj", "cls", "cmd", "config.ru", "cp", "cpp",
     "cpy", "cs", "css", "css.erb", "css.liquid", "csx", "cxx", "d", "ddl", "di", "diff", "dml",
     "dot", "dpr", "dtml", "el", "emakefile", "erb", "erbsql", "erl", "fasl", "fcgi", "fish",
     "gemspec", "go", "gradle", "groovy", "gv", "gvy", "gyp", "gypi", "h", "h++", "haml", "hh",
