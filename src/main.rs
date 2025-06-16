@@ -32,6 +32,7 @@ pub enum Paste {
     Highlighted(Template),
     Regular(Vec<u8>, ContentType),
     Markdown(Template),
+    Asciinema(Template),
 }
 
 #[derive(Debug, FromForm)]
@@ -92,6 +93,10 @@ async fn get(
             let string = String::from_utf8_lossy(&data);
             let content = highlighter.render_markdown(&string)?;
             Paste::Markdown(Template::render("markdown", context! { config, id, content }))
+        }
+        Some("cast") => {
+            let base = id.base();
+            Paste::Asciinema(Template::render("asciinema", context! { config, id, base }))
         }
         Some(ext) if Highlighter::contains(ext) => {
             let string = String::from_utf8_lossy(&data);

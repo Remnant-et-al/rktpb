@@ -1,5 +1,6 @@
 use std::fmt;
 use std::borrow::Cow;
+use std::string::String;
 use std::path::{Path, PathBuf};
 
 use rand::distributions::DistString;
@@ -26,6 +27,10 @@ impl<'a> PasteId<'a> {
     pub fn with_ext<E: Into<Option<&'a str>>>(config: &Config, ext: E) -> Self {
         let id = Alphanumeric.sample_string(&mut thread_rng(), config.id_length);
         PasteId(Cow::Owned(id), ext.into())
+    }
+
+    pub fn base(&self) -> String {
+        self.0.clone().into_owned()
     }
 
     /// The extension of the paste ID, if there is any.

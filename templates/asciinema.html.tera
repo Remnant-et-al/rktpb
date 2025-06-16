@@ -1,0 +1,20 @@
+{% extends 'base' %}
+{% block title %}asciinema recording | {{ id }} | Rocket Powered Pastebin {% endblock title %}
+{% block head %}
+<meta http-equiv="Content-Security-Policy" content="
+	default-src 'self' 'unsafe-inline' 'wasm-unsafe-eval';
+" />
+<link rel=stylesheet type="text/css" href="/asciinema-player.css" />
+<link rel=stylesheet type="text/css" href="/asciinema.css" />
+{% endblock head %}
+{% block body %}
+<main id="player"></main>
+<script src="/asciinema-player.min.js"></script>
+<script>
+AsciinemaPlayer.create('/{{ base }}', document.getElementById('player'), {
+  speed: 1,
+  loop: true,
+  preload: true,
+});
+</script>
+{% endblock body %}
