@@ -30,7 +30,8 @@
           Retrieve the paste with the given id.
 
           If ext is "md", "mdown", or "markdown", the paste is rendered as
-          markdown into HTML. If ext is a known code file extension, the paste
+          markdown into HTML. If ext is "cast" it is rendered as an <a href="https://asciinema.org">asciinema</a> terminal recording.
+          If ext is a known code file extension, the paste
           is syntax highlighted and returned as HTML. If ext is a known format
           extension, the paste is returned with the format's corresponding
           Content-Type. Otherwise, the paste is returned as unmodified text.
