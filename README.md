@@ -42,31 +42,32 @@ a [TOML file](#toml-file). A set of defaults is always provided.
 
 The complete list of configurable parameters is below:
 
-| Name               | Default Value               | Description                               |
-|--------------------|-----------------------------|-------------------------------------------|
-| `id_length`        | `3`                         | paste ID length
-| `upload_dir`       | `"upload"`                  | directory to save uploads in              |
-| `paste_limit`      | `"384KiB"`                  | maximum paste upload file size            |
-| `max_age`          | `"30 days"`                 | how long a paste is considered fresh      |
-| `reap_interval`    | `"5 minutes"`               | how often to reap stale uploads           |
-| `server_url`       | `"http://{address}:{port}"` | URL server is reachable at                |
-|                    |                             |                                           |
-| `cors.{host}`      | `["{HTTP method}"..]`       | allow CORS {HTTP methods} for {host}      |
-|                    |                             |                                           |
-| `address`          | `"127.0.0.1"`               | address to listen on                      |
-| `port`             | `8000`                      | port to listen on                         |
-| `keep_alive`       | `5`                         | HTTP keep-alive in seconds                |
-| `ident`            | `"Rocket"`                  | server `Ident` header                     |
-| `ip_header`        | `"X-Real-IP"`               | header to inspect for client IP           |
-| `log_level`        | `"normal"`                  | console log level                         |
-| `cli_colors`       | `true`                      | enable (detect TTY) or disable CLI colors |
-|                    |                             |                                           |
-| `shutdown.ctrlc`   | `true`                      | whether `<ctrl-c>` initiates a shutdown   |
-| `shutdown.signals` | `["term", "hup"]`           | signals that initiate a shutdown          |
-| `shutdown.grace`   | `5`                         | grace period length in seconds            |
-| `shutdown.mercy`   | `5`                         | mercy period length in seconds            |
-|                    |                             |                                           |
-| `source_code_url`  | (this repo)                 | a link to your instance's source code     |
+| Name                  | Default Value               | Description                               |
+|-----------------------|-----------------------------|-------------------------------------------|
+| `id_length`           | `3`                         | paste ID length                           |
+| `upload_dir`          | `"upload"`                  | directory to save uploads in              |
+| `paste_limit`         | `"384KiB"`                  | maximum paste upload file size            |
+| `max_age`             | `"30 days"`                 | how long a paste is considered fresh      |
+| `reap_interval`       | `"5 minutes"`               | how often to reap stale uploads           |
+| `server_url`          | `"http://{address}:{port}"` | URL server is reachable at                |
+|                       |                             |                                           |
+| `cors.{host}`         | `["{HTTP method}"..]`       | allow CORS {HTTP methods} for {host}      |
+|                       |                             |                                           |
+| `address`             | `"127.0.0.1"`               | address to listen on                      |
+| `port`                | `8000`                      | port to listen on                         |
+| `keep_alive`          | `5`                         | HTTP keep-alive in seconds                |
+| `ident`               | `"Rocket"`                  | server `Ident` header                     |
+| `ip_header`           | `"X-Real-IP"`               | header to inspect for client IP           |
+| `log_level`           | `"normal"`                  | console log level                         |
+| `cli_colors`          | `true`                      | enable (detect TTY) or disable CLI colors |
+|                       |                             |                                           |
+| `shutdown.ctrlc`      | `true`                      | whether `<ctrl-c>` initiates a shutdown   |
+| `shutdown.signals`    | `["term", "hup"]`           | signals that initiate a shutdown          |
+| `shutdown.grace`      | `5`                         | grace period length in seconds            |
+| `shutdown.mercy`      | `5`                         | mercy period length in seconds            |
+|                       |                             |                                           |
+| `source_code_url`     | (this repo)                 | a link to your instance's source code     |
+| `socks5_example_addr` | `""`                        | an example proxy to pass to curl/pwsh     |
 
 You'll definitely want to configure the values in the first two categories, from
 `id_length` to `cors`.
