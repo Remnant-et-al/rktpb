@@ -45,25 +45,25 @@
       Paste a file named 'file.txt' using {{ cmd }}:
 
           {% if os == "windows" -%}
-              Invoke-RestMethod -Uri "{{ config.server_url }}" -Method Post -InFile .\file.txt
+              Invoke-RestMethod{{ flag }} -Uri "{{ config.server_url }}" -Method Post -InFile .\file.txt
           {%- else -%}
-              curl --data-binary @file.txt {{ config.server_url }}/
+              curl{{ flag }} --data-binary @file.txt {{ config.server_url }}/
           {%- endif %}
 
       Paste from stdin using {{ cmd }}:
 
           {% if os == "windows" -%}
-              echo "Hi!" | Invoke-RestMethod -Uri "{{ config.server_url }}" -Method Post
+              echo "Hi!" | Invoke-RestMethod{{ flag }} -Uri "{{ config.server_url }}" -Method Post
           {%- else -%}
-              echo "Hello, world." | curl --data-binary @- {{ config.server_url }}/
+              echo "Hello, world." | curl{{ flag }} --data-binary @- {{ config.server_url }}/
           {%- endif %}
 
       Delete an existing paste with id &lt;id> using {{ cmd }}:
 
           {% if os == "windows" -%}
-              Invoke-RestMethod -Uri "{{ config.server_url }}/&lt;id>" -Method Delete
+              Invoke-RestMethod{{ flag }} -Uri "{{ config.server_url }}/&lt;id>" -Method Delete
           {%- else -%}
-              curl -X DELETE {{ config.server_url }}/&lt;id>
+              curl{{ flag }} -X DELETE {{ config.server_url }}/&lt;id>
           {%- endif %}
 
       {% if os == "windows" -%}
@@ -74,7 +74,7 @@
 
           function Paste([string]$file) {
               $Data = if ($file) {Get-Content $file} else {$input}
-              Invoke-RestMethod -Uri "{{ config.server_url }}" -Method Post -Body $Data
+              Invoke-RestMethod {{ flag }} -Uri "{{ config.server_url }}" -Method Post -Body $Data
           }
       {%- else -%}
          A shell function that can be added to `.bashrc` or `.bash_profle` for
@@ -84,7 +84,7 @@
 
           function paste() {
               local file=${1:-/dev/stdin}
-              curl --data-binary @${file} {{ config.server_url }}
+              curl{{ flag }} --data-binary @${file} {{ config.server_url }}
           }
       {%- endif %}
 

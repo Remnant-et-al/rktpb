@@ -112,13 +112,18 @@ async fn get(
 
 #[get("/")]
 fn index(config: &Config, os: Option<ClientOs>) -> Template {
-    let (os, cmd) = match os.map(|os| os.name()) {
-        Some(os @ "windows") => (os, "PowerShell"),
-        Some(os @ ("linux" | "darwin")) => (os, "cURL"),
-        _ => ("unix", "cURL")
+    let curl_flag: String = " --socks5-hostname ".to_owned() + &config.example_socks5_addr;
+    let (os, cmd, example_socks5_flag) = match os.map(|os| os.name()) {
+        Some(os @ "windows") => {
+            let flag: String = " -Proxy socks5://".to_owned();
+            (os, "PowerShell (6+)", flag + &config.example_socks5_addr)
+        },
+        Some(os @ ("linux" | "darwin")) => (os, "cURL", curl_flag),
+        _ => ("unix", "cURL", curl_flag)
     };
+    let example_socks5_flag = if config.example_socks5_addr.is_empty() { String::from("") } else { example_socks5_flag };
 
-    Template::render("index", context! { config, cmd, os })
+    Template::render("index", context! { config, cmd, os, flag: example_socks5_flag })
 }
 
 #[get("/web")]

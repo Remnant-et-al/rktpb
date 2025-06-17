@@ -21,6 +21,7 @@ pub struct Config {
     #[serde(serialize_with = "RelativePathBuf::serialize_original")]
     pub upload_dir: RelativePathBuf,
     pub source_code_url: String,
+    pub example_socks5_addr: String,
 }
 
 impl Config {
@@ -53,6 +54,7 @@ impl Config {
                 server_url: default_server_url,
                 upload_dir: "upload".into(),
                 source_code_url: String::from("https://github.com/SergioBenitez/rktpb"),
+                example_socks5_addr: String::from(""),
             }));
 
         // Configure Rocket based on `Config` settings. If this fails now, it's
