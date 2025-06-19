@@ -74,7 +74,7 @@
 
           function Paste([string]$file) {
               $Data = if ($file) {Get-Content $file} else {$input}
-              Invoke-RestMethod {{ flag }} -Uri "{{ config.server_url }}" -Method Post -Body $Data
+              Invoke-RestMethod{{ flag }} -Uri "{{ config.server_url }}" -Method Post -Body $Data
           }
       {%- else -%}
          A shell function that can be added to `.bashrc` or `.bash_profle` for

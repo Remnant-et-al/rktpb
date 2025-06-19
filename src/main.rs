@@ -112,21 +112,27 @@ async fn get(
 
 #[get("/")]
 fn index(config: &Config, os: Option<ClientOs>) -> Template {
-    let curl_flag: String = " --socks5-hostname ".to_owned() + &config.example_socks5_addr;
-    let (os, mut cmd, example_socks5_flag) = match os.map(|os| os.name()) {
-        Some(os @ "windows") => {
-            let flag: String = " -Proxy socks5://".to_owned();
-            (os, String::from("PowerShell"), flag + &config.example_socks5_addr)
-        },
-        Some(os @ ("linux" | "darwin")) => (os, String::from("cURL"), curl_flag),
-        _ => ("unix", String::from("cURL"), curl_flag)
+    let os = match os.map(|o| o.name()) {
+        Some(os @ ("windows" | "linux" | "darwin")) => os,
+        _ => "unix",
     };
-    let example_socks5_flag = if config.example_socks5_addr.is_empty() {String::from("") } else { example_socks5_flag };
-    if !config.example_socks5_addr.is_empty() && os == "windows" {
-        cmd.push_str(" (v6+)");
-    }
 
-    Template::render("index", context! { config, cmd, os, flag: example_socks5_flag })
+    let cmd = match (os, &*config.example_socks5_addr) {
+        ("windows", "") => "PowerShell",
+        ("windows", _) => "PowerShell (v6+)",
+        _ => "cURL",
+    };
+
+    let mut flag = String::new();
+    if !config.example_socks5_addr.is_empty() {
+        if os == "windows" {
+            flag.push_str(" -Proxy socks5://");
+        } else {
+            flag.push_str(" --socks5-hostname ");
+        }
+        flag.push_str(&config.example_socks5_addr);
+    };
+    Template::render("index", context! { config, cmd, os, flag })
 }
 
 #[get("/web")]
