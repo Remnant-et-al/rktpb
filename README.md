@@ -1,4 +1,4 @@
-# Rocket Powered Pastebin (`rktpb` | [`paste.rs`])
+# Rocket Powered Pastebin (Enhanced) (`rktpb-extra` | [`paste.remnant.gay`])
 
 A pastebin that does just enough to be _really_ useful.
 
@@ -13,14 +13,14 @@ A pastebin that does just enough to be _really_ useful.
   - [x] No database: uses the file system.
   - [x] Automatically deletes stale pastes.
 
-This pastebin powers [`paste.rs`], a public instance. Further usage details can
+This pastebin powers [`paste.remnant.gay`], a public instance. Further usage details can
 be found there.
 
-[`paste.rs`]: https://paste.rs
+[`paste.remnant.gay`]: https://paste.remnant.gay
 
 ## Usage
 
-**R**ocket **P**owered **P**aste**b**in (`rktpb`) is written in
+**R**oc**k**e**t** Powered **P**aste**b**in (`rktpb`) is written in
 [Rust](https://rust-lang.org) with [Rocket](https://rocket.rs). To start the
 server, use `cargo`:
 
@@ -129,8 +129,8 @@ when compiled in `debug` mode with `[debug]`.
 
 ## License
 
-Rocket Powered Pastebin (`rktpb` | [`paste.rs`])  
-Copyright © 2020 Sergio Benitez
+Rocket Powered Pastebin (`rktpb-extra`)
+Copyright © Sergio Benitez & Remnant et al
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the [GNU Affero General Public License version 3 (GNU AGPLv3) as
