@@ -1,4 +1,4 @@
-# Rocket Powered Pastebin (Enhanced) (`rktpb-extra` | [`paste.remnant.gay`])
+# Rocket Powered Pastebin (Enhanced) (`rktpb-enhanced` | [`paste.remnant.gay`])
 
 A pastebin that does just enough to be _really_ useful.
 
@@ -129,7 +129,7 @@ when compiled in `debug` mode with `[debug]`.
 
 ## License
 
-Rocket Powered Pastebin (`rktpb-extra`)
+Rocket Powered Pastebin (`rktpb-enhanced`)
 Copyright © Sergio Benitez & Remnant et al
 
 This program is free software: you can redistribute it and/or modify it under
